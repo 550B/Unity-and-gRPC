@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package pos;
+
+service PosServicer {
+  // easy call
+  rpc EasyCall (EasyCallRequest) returns (EasyCallReply);
+  // client stream
+  rpc PosCall (PosRequest) returns (PosReply);
+}
+
+message EasyCallRequest {
+  int32 code = 1;
+}
+
+message EasyCallReply {
+  int32 code = 1;
+}
+
+message PosRequest {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message PosReply {
+  int32 id = 1;
+  bool inside = 2;
+}
