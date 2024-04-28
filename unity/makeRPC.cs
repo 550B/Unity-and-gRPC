@@ -156,21 +156,25 @@ public class makeRPC : MonoBehaviour
 
     public void localButtonClick()
     {
+        client.ServerIpPort = "127.0.0.1:5173";
+
         EasyCallRequest request = new EasyCallRequest();
         request.Code = 0;
         bool reply = client.EasyCall(request);
         textbox.text = "Local connection " + (reply ? "succeeded! " : "failed! ") + "The return code is: " + client._code.ToString();
-        client.ServerIpPort = "127.0.0.1:5173";
+        
         isBegin = reply;
     }
 
     public void remoteButtonClick()
     {
+        client.ServerIpPort = "47.120.41.97:2333";
+
         EasyCallRequest request = new EasyCallRequest();
         request.Code = 0;
         bool reply = client.EasyCall(request);
         textbox.text = "Remote connection " + (reply ? "succeeded! " : "failed! ") + "The return code is: " + client._code.ToString();
-        client.ServerIpPort = "47.120.41.97:2333";
+        
         isBegin = reply;
     }
 }

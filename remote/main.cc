@@ -29,6 +29,7 @@ class PosServicerImpl final : public pos::PosServicer::Service {
 public:
   Status EasyCall(ServerContext* context, const EasyCallRequest* request,
                   EasyCallReply* reply) {
+    std::cout << "New connection, code is: " << request->code() << std::endl;
     reply->set_code(0);
     return Status::OK;
   }
@@ -39,7 +40,7 @@ public:
     float z = request->z();
 
     if (x>=-5&&x<=5&&z>=-5&&z<=5&&y>=-5) {
-      reply->set_id(0);
+      reply->set_id(1);
       reply->set_inside(true);
     }
     else
@@ -47,6 +48,9 @@ public:
       reply->set_id(-1);
       reply->set_inside(false);
     }
+
+    std::cout << "The position is: (" << x << ", " << y << ", " << z << "), and the result is: " << reply->inside() << std::endl;
+
     return Status::OK;
   }
 };
